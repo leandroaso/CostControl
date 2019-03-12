@@ -21,8 +21,8 @@ namespace CostControl.Domain.Entities
             if(Name.Length > 200)
                 AddNotification("EmployeeName", "O nome deve ter no máximo 200 caracteres.");
             
-            if(Departament == null)
-                AddNotification("Departament", "O departamento é obrigatório.");
+            if(DepartamentId == null)
+                AddNotification("DepartamentId", "O departamento é obrigatório.");
         }
         public string Name { get; private set; }
         public Guid DepartamentId { get; set; }

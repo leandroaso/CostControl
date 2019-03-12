@@ -28,7 +28,7 @@ namespace CostControl.Infra.Repositories
 
         public Employee GetById(Guid Id)
         {
-            return _context.Employees.FirstOrDefault(x => x.Id == Id);
+            return _context.Employees.Include(x => x.Departament).FirstOrDefault(x => x.Id == Id);
         }
 
         public void Add(Employee entity)

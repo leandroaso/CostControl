@@ -1,6 +1,7 @@
 ﻿using CostControl.Domain.Entities;
 using CostControl.Domain.Interfaces.Services;
 using CostControl.Infra.Transactions;
+using CostControl.Shared.Enums;
 using CostControl.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace CostControl.Application.Services
                 {
                     Data = departament,
                     Message = "Departamento obtido com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception)
@@ -35,7 +36,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = "Falha ao buscar departamento selecionado.",
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
         }
@@ -63,7 +64,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = "Departamento deletado com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception)
@@ -71,7 +72,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = "Falha ao deletar departamento.",
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
             
@@ -84,7 +85,7 @@ namespace CostControl.Application.Services
                 {
                     Data = entity.Notifications,
                     Message = "Falha ao salvar departamento.",
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
 
             try
@@ -96,7 +97,7 @@ namespace CostControl.Application.Services
                 {
                     Data = entity,
                     Message = "Departamento adicionado com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception ex)
@@ -104,7 +105,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = ex.Message,
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
         }
@@ -120,7 +121,7 @@ namespace CostControl.Application.Services
                 {
                     Data = entity,
                     Message = "Departamento atualizado com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception ex)
@@ -128,7 +129,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = ex.Message,
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
         }

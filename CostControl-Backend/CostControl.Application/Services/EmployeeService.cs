@@ -1,7 +1,9 @@
 ﻿using CostControl.Domain.Entities;
 using CostControl.Domain.Interfaces.Services;
 using CostControl.Infra.Transactions;
+using CostControl.Shared.Enums;
 using CostControl.Shared.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +29,7 @@ namespace CostControl.Application.Services
                 {
                     Data = employee,
                     Message = "Funcionário obtido com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception)
@@ -35,7 +37,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = "Falha ao buscar funcionário selecionado.",
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
             
@@ -46,6 +48,7 @@ namespace CostControl.Application.Services
             IEnumerable<Employee> employees;
 
             employees = _uow.EmployeeRepository.GetAll()
+                .Include(x => x.Departament)
                 .OrderByDescending(x => x.CreationDate)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
@@ -64,7 +67,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = "Funcionário deletado com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception)
@@ -72,7 +75,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = "Falha ao deletar funcionário.",
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
         }
@@ -84,7 +87,7 @@ namespace CostControl.Application.Services
                 {
                     Data = entity.Notifications,
                     Message = "Falha ao adicionar funcionário.",
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
 
             try
@@ -96,7 +99,7 @@ namespace CostControl.Application.Services
                 {
                     Data = entity,
                     Message = "Funcionário adicionado com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception ex)
@@ -105,7 +108,7 @@ namespace CostControl.Application.Services
                 {
                     Data = entity,
                     Message = ex.Message,
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
         }
@@ -121,7 +124,7 @@ namespace CostControl.Application.Services
                 {
                     Data = entity,
                     Message = "Funcionário atualizado com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception ex)
@@ -129,7 +132,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = ex.Message,
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
         }

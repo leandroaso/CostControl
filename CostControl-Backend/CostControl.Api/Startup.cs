@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CostControl.Application.Services;
+using CostControl.Domain.Interfaces.Services;
+using CostControl.Infra.DataContext;
+using CostControl.Infra.Transactions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +28,14 @@ namespace CostControl.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddScoped<CostControlContext, CostControlContext>();
+            services.AddTransient<IUnityOfWork, UnityOfWork>();
+            services.AddTransient<IDepartamentService, DepartamentService>();
+            services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<IMovementService, MovementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

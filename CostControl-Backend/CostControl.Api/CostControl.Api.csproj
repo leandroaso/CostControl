@@ -11,11 +11,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CostControl.Application\CostControl.Application.csproj" />
+    <ProjectReference Include="..\CostControl.Domain\CostControl.Domain.csproj" />
     <ProjectReference Include="..\CostControl.Infra\CostControl.Infra.csproj" />
+    <ProjectReference Include="..\CostControl.Shared\CostControl.Shared.csproj" />
   </ItemGroup>
 
 </Project>

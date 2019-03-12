@@ -1,6 +1,7 @@
 ﻿using CostControl.Domain.Entities;
 using CostControl.Domain.Interfaces.Services;
 using CostControl.Infra.Transactions;
+using CostControl.Shared.Enums;
 using CostControl.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace CostControl.Application.Services
                 {
                     Data = movement,
                     Message = "Movimento obtido com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception)
@@ -35,7 +36,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = "Falha ao buscar movimento selecionado.",
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
         }
@@ -63,7 +64,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = "Movimento deletado com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception)
@@ -71,7 +72,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = "Falha ao deletar movimento.",
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
         }
@@ -83,7 +84,7 @@ namespace CostControl.Application.Services
                 {
                     Data = entity.Notifications,
                     Message = "Falha ao adicionar movimento.",
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
 
             try
@@ -95,7 +96,7 @@ namespace CostControl.Application.Services
                 {
                     Data = entity,
                     Message = "Movimento adicionado com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception ex)
@@ -104,7 +105,7 @@ namespace CostControl.Application.Services
                 {
                     Data = entity,
                     Message = ex.Message,
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
         }
@@ -120,7 +121,7 @@ namespace CostControl.Application.Services
                 {
                     Data = entity,
                     Message = "Movimento atualizado com sucesso.",
-                    Success = true
+                    Status = EResultStatus.Success
                 };
             }
             catch (Exception ex)
@@ -128,7 +129,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Message = ex.Message,
-                    Success = false
+                    Status = EResultStatus.Failure
                 };
             }
         }
