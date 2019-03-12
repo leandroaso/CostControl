@@ -31,18 +31,14 @@ namespace CostControl.Infra.Repositories
             return _context.Departaments.FirstOrDefault(x => x.Id == Id);
         }
 
-        public Departament Save(Departament entity)
+        public void Add(Departament entity)
         {
             _context.Departaments.Add(entity);
-
-            return entity;
         }
 
-        public Departament Update(Departament entity)
+        public void Update(Departament entity)
         {
             _context.Entry<Departament>(entity).State = EntityState.Modified;
-
-            return entity;
         }
     }
 }

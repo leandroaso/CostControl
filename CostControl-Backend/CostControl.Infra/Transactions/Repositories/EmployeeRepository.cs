@@ -31,18 +31,14 @@ namespace CostControl.Infra.Repositories
             return _context.Employees.FirstOrDefault(x => x.Id == Id);
         }
 
-        public Employee Save(Employee entity)
+        public void Add(Employee entity)
         {
             _context.Employees.Add(entity);
-
-            return entity;
         }
 
-        public Employee Update(Employee entity)
+        public void Update(Employee entity)
         {
             _context.Entry<Employee>(entity).State = EntityState.Modified;
-
-            return entity;
         }
     }
 }

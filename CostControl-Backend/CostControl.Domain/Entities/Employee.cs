@@ -1,9 +1,15 @@
 using CostControl.Shared.Entities;
+using System;
 
 namespace CostControl.Domain.Entities
 {
     public class Employee : Entity
     {
+        protected Employee()
+        {
+
+        }
+
         public Employee(string name, Departament departament)
         {
             Name = name;
@@ -19,6 +25,7 @@ namespace CostControl.Domain.Entities
                 AddNotification("Departament", "O departamento é obrigatório.");
         }
         public string Name { get; private set; }
+        public Guid DepartamentId { get; set; }
         public Departament Departament { get; private set; }
 
         public override string ToString()

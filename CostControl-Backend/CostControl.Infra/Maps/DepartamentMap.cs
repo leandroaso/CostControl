@@ -10,6 +10,8 @@ namespace CostControl.Infra.Maps
         {
             builder.ToTable("Departament");
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.CreationDate).IsRequired();
         }
     }
 }

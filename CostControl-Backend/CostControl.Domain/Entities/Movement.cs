@@ -1,9 +1,15 @@
 using CostControl.Shared.Entities;
+using System;
 
 namespace CostControl.Domain.Entities
 {
     public class Movement : Entity
     {
+        protected Movement()
+        {
+
+        }
+
         public Movement(Employee employee, string description, decimal movementValue)
         {
             Employee = employee;
@@ -19,6 +25,7 @@ namespace CostControl.Domain.Entities
             if(Description.Length > 500)
                 AddNotification("Description", "A descrição deve ter no máximo 500 caracteres.");
         }
+        public Guid EmployeeId { get; set; }
         public Employee Employee { get; private set; }
         public string Description { get; private set; }
         public decimal MovementValue { get; private set; }

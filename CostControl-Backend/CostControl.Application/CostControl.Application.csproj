@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CostControl.Domain\CostControl.Domain.csproj" />
+    <ProjectReference Include="..\CostControl.Infra\CostControl.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -4,6 +4,11 @@ namespace CostControl.Domain.Entities
 {
     public class Departament : Entity
     {
+        protected Departament()
+        {
+
+        }
+
         public Departament(string name)
         {
             Name = name;

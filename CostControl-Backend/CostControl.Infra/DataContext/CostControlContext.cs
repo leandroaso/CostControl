@@ -1,5 +1,7 @@
 ﻿using CostControl.Domain.Entities;
+using CostControl.Infra.Maps;
 using CostControl.Shared;
+using FluentValidator;
 using Microsoft.EntityFrameworkCore;
 
 namespace CostControl.Infra.DataContext
@@ -19,7 +21,11 @@ namespace CostControl.Infra.DataContext
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new MovementMap());
+            builder.ApplyConfiguration(new EmployeeMap());
+            builder.ApplyConfiguration(new DepartamentMap());
 
+            builder.Ignore<Notification>();
         }
     }
 }

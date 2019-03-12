@@ -31,18 +31,14 @@ namespace CostControl.Infra.Repositories
             return _context.Movements.FirstOrDefault(x => x.Id == Id);
         }
 
-        public Movement Save(Movement entity)
+        public void Add(Movement entity)
         {
             _context.Movements.Add(entity);
-
-            return entity;
         }
 
-        public Movement Update(Movement entity)
+        public void Update(Movement entity)
         {
             _context.Entry<Movement>(entity).State = EntityState.Modified;
-
-            return entity;
         }
     }
 }
