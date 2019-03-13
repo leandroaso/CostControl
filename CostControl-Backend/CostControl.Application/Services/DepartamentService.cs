@@ -3,6 +3,7 @@ using CostControl.Domain.Interfaces.Services;
 using CostControl.Infra.Transactions;
 using CostControl.Shared.Enums;
 using CostControl.Shared.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,14 +42,13 @@ namespace CostControl.Application.Services
             }
         }
 
-        public IEnumerable<Departament> GetAll(int pageSize, int pageNumber)
+        public IEnumerable<Departament> GetAll()
         {
             IEnumerable<Departament> departaments;
 
             departaments = _uow.DepartamentRepository.GetAll()
+                .AsNoTracking()
                 .OrderByDescending(x => x.CreationDate)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
                 .ToList();
 
             return departaments;

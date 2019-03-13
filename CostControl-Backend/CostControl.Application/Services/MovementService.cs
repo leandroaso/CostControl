@@ -3,6 +3,7 @@ using CostControl.Domain.Interfaces.Services;
 using CostControl.Infra.Transactions;
 using CostControl.Shared.Enums;
 using CostControl.Shared.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,11 +42,24 @@ namespace CostControl.Application.Services
             }
         }
 
-        public IEnumerable<Movement> GetAll(int pageSize, int pageNumber)
+        public IEnumerable<Movement> GetAll()
         {
             IEnumerable<Movement> movements;
 
             movements = _uow.MovementRepository.GetAll()
+                .AsNoTracking()
+                .OrderByDescending(x => x.CreationDate)
+                .ToList();
+
+            return movements;
+        }
+
+        public IEnumerable<Movement> GetAllWithPagination(int pageSize, int pageNumber)
+        {
+            IEnumerable<Movement> movements;
+
+            movements = _uow.MovementRepository.GetAll()
+                .AsNoTracking()
                 .OrderByDescending(x => x.CreationDate)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)

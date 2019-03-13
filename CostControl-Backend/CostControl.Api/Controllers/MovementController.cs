@@ -33,7 +33,7 @@ namespace CostControl.Api.Controllers
         [Route("api/movements/{pageSize:int}/{pageNumber:int}")]
         public IEnumerable<Movement> GetAll(int pageSize, int pageNumber)
         {
-            var movements = _service.GetAll(pageSize, pageNumber);
+            var movements = _service.GetAllWithPagination(pageSize, pageNumber);
 
             return movements;
         }

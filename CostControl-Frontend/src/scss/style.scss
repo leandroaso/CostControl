@@ -6,3 +6,28 @@
 
 // If you want to add something do it here
 @import "custom";
+
+
+input.ng-invalid.ng-touched {
+    border: 1px solid #f86c6b;
+}
+
+textarea.ng-invalid.ng-touched{
+    border: 1px solid #f86c6b;
+}
+
+select.ng-invalid.ng-touched {
+    border: 1px solid #f86c6b;
+}
+
+input.ng-valid.ng-touched {
+    border: 1px solid #4dbd74;
+}
+
+textarea.ng-valid.ng-touched {
+    border: 1px solid #4dbd74;
+}
+
+select.ng-valid.ng-touched {
+    border: 1px solid #4dbd74;
+}

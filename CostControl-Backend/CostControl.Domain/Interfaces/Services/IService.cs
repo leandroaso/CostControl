@@ -6,7 +6,7 @@ namespace CostControl.Domain.Interfaces.Services
 {
     public interface IService<T> where T : class
     {
-        IEnumerable<T> GetAll(int pageSize, int pageNumber);
+        IEnumerable<T> GetAll();
         ResultModel Get(Guid Id);
         ResultModel Save(T entity);
         ResultModel Update(T entity);

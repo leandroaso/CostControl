@@ -13,20 +13,31 @@
                placement="right">New Departament</button>
        </div>
        <ng-template #popDepartament>
-           <div class="input-group">
-               <input class="form-control" size="30" type="text" placeholder="Departament Name">
-               <span class="input-group-append">
-                   <button class="btn btn-ghost-success" type="button"><i class="fa fa-plus"></i>
-                   </button></span>
-           </div>
+           <form [formGroup]="formDepartament">
+                <div class="input-group">
+                    <input formControlName="name" class="form-control" size="30" type="text" placeholder="Departament Name">
+                    <span class="input-group-append">
+                        <button class="btn btn-ghost-success" type="button" (click)="submitForm()"><i class="fa fa-plus"></i>
+                        </button></span>
+                </div>
+           </form>
        </ng-template>
        <br>
        <ul class="list-group">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item" *ngFor="let departament of departaments">
+            {{departament.name}}
+
+            <button 
+                class="btn btn-brand btn-sm btn-youtube mr-1" 
+                style="float: right;" 
+                type="button"
+                (click)="deleteDepartament(departament.id)">
+                <i class="cui-trash"></i>
+            </button>
+            <button class="btn btn-brand btn-sm btn-twitter mr-1" style="float: right;" type="button">
+                <i class="cui-pencil"></i>
+            </button> 
+          </li>
        </ul>
     </div>
  </div>

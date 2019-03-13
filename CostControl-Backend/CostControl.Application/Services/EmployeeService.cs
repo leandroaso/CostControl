@@ -43,15 +43,14 @@ namespace CostControl.Application.Services
             
         }
 
-        public IEnumerable<Employee> GetAll(int pageSize, int pageNumber)
+        public IEnumerable<Employee> GetAll()
         {
             IEnumerable<Employee> employees;
 
             employees = _uow.EmployeeRepository.GetAll()
+                .AsNoTracking()
                 .Include(x => x.Departament)
                 .OrderByDescending(x => x.CreationDate)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
                 .ToList();
 
             return employees;

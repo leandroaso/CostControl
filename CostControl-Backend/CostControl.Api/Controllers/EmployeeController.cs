@@ -30,10 +30,10 @@ namespace CostControl.Api.Controllers
         }
 
         [HttpGet]
-        [Route("api/employees/{pageSize:int}/{pageNumber:int}")]
-        public IEnumerable<Employee> GetAll(int pageSize, int pageNumber)
+        [Route("api/employees")]
+        public IEnumerable<Employee> GetAll()
         {
-            var employees = _service.GetAll(pageSize, pageNumber);
+            var employees = _service.GetAll();
 
             return employees;
         }

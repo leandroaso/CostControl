@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CostControl.Domain.Entities;
+﻿using CostControl.Domain.Entities;
 using CostControl.Domain.Interfaces.Services;
 using CostControl.Shared.Enums;
-using CostControl.Shared.Models;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace CostControl.Api.Controllers
 {
@@ -34,10 +31,10 @@ namespace CostControl.Api.Controllers
         }
 
         [HttpGet]
-        [Route("api/departaments/{pageSize:int}/{pageNumber:int}")]
-        public IEnumerable<Departament> GetAll(int pageSize, int pageNumber)
+        [Route("api/departaments")]
+        public IEnumerable<Departament> GetAll()
         {
-            var departaments = _service.GetAll(pageSize, pageNumber);
+            var departaments = _service.GetAll();
 
             return departaments;
         }
