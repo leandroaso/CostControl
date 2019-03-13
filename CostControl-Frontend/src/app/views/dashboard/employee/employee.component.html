@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header"> 
+        <div class="card-header-actions">
+            <button type="button" class="card-header-action btn btn-link btn-minimize" (click)="toggleCollapse()"><i class={{employeesCollapse}}></i></button>
+        </div>
+        Employees
+    </div>
+    <div class="card-body" [ngStyle]="{'display': isEmployeesCollapsed ? 'none' : ''}">
+        <div>
+            <button 
+                class="btn btn-sm btn-ghost-success" 
+                type="button"
+                [popover]="popEmployee" 
+                placement="right">New Employee</button>
+        </div>
+        <ng-template #popEmployee>
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" size="30" type="text" placeholder="Employee Name">
+                </div>
+                <br>
+                <div class="input-group">
+                    <select class="form-control form-control-md">
+                        <option value="0">Select a departament</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                    </select>
+                </div>
+                <br>
+                <button class="btn btn-sm btn-square btn-success" type="button">Save Employee</button>
+            </div>
+        </ng-template>
+        <br>
+        <ul class="list-group">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+    </div>
+</div>

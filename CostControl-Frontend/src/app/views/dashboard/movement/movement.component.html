@@ -1,0 +1,71 @@
+<div class="card">
+    <div class="card-header">
+       <div class="card-header-actions">
+           <button type="button" class="card-header-action btn btn-link btn-minimize" (click)="toggleCollapse('movements')"><i class={{movementsCollapse}}></i></button>
+       </div>
+       Movements
+    </div>
+    <div class="card-body" [ngStyle]="{'display': isMovementsCollapsed ? 'none' : ''}">
+       <div>
+           <button 
+               class="btn btn-sm btn-ghost-success" 
+               type="button"
+               [popover]="popMovement" 
+               placement="right">New Movement</button>
+       </div>
+       <ng-template #popMovement>
+           <div class="form-group">
+               <div class="input-group">
+                   <input class="form-control" size="30" type="text" placeholder="Movement Description">
+               </div>
+               <br>
+               <div class="input-group">
+                   <select class="form-control form-control-md">
+                       <option value="0">Select a departament</option>
+                       <option value="1">Option #1</option>
+                   </select>
+               </div>
+               <br>
+               <div class="input-group">
+                   <select class="form-control form-control-md">
+                       <option value="0">Select a employee</option>
+                       <option value="1">Option #1</option>
+                   </select>
+               </div>
+               <br>
+               <button class="btn btn-sm btn-square btn-success" type="button">Save Movement</button>
+           </div>
+       </ng-template>
+       <br>
+       <table class="table">
+          <thead>
+             <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+             </tr>
+          </thead>
+          <tbody>
+             <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+             </tr>
+             <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+             </tr>
+             <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+             </tr>
+          </tbody>
+       </table>
+    </div>
+ </div>
