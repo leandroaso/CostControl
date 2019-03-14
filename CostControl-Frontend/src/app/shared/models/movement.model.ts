@@ -5,11 +5,11 @@ export class Movement{
     constructor(description: string, movementValue: number, employeeId: number ){
         this.description = description;
         this.movementValue = movementValue;
-        this.employeeuId = employeeId;
+        this.employeeId = employeeId;
     }
 
     id: number;
-    employeeuId: number;
+    employeeId: number;
     employee: Employee;
     description: string;
     movementValue: number;

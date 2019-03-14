@@ -52,7 +52,6 @@ export class EmployeeComponent implements OnInit {
   getDepartaments(): void {
     this.depService.getAll().subscribe(
       (departaments: Departament[]) => {
-        debugger
         this.departaments = departaments
       }
     )

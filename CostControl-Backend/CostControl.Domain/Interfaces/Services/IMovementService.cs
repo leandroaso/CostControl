@@ -1,10 +1,10 @@
 ﻿using CostControl.Domain.Entities;
-using System.Collections.Generic;
+using CostControl.Shared.Models;
 
 namespace CostControl.Domain.Interfaces.Services
 {
     public interface IMovementService : IService<Movement>
     {
-        IEnumerable<Movement> GetAllWithPagination(int pageSize, int pageNumber);
+        ResultModel GetAllWithPagination(int pageSize, int pageNumber);
     }
 }

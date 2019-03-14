@@ -10,13 +10,13 @@ namespace CostControl.Domain.Entities
 
         }
 
-        public Movement(Employee employee, string description, decimal movementValue)
+        public Movement(string description, decimal movementValue, Guid employeeId)
         {
-            Employee = employee;
+            EmployeeId = employeeId;
             Description = description;
             MovementValue = movementValue;
 
-            if(Employee == null)
+            if(EmployeeId == null)
                 AddNotification("Employee", "O funcionário é obrigatório.");
             
             if(string.IsNullOrEmpty(Description) && string.IsNullOrWhiteSpace(Description))

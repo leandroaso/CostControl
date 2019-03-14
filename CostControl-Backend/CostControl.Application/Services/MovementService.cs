@@ -48,24 +48,48 @@ namespace CostControl.Application.Services
 
             movements = _uow.MovementRepository.GetAll()
                 .AsNoTracking()
+                .Include(x => x.Employee)
                 .OrderByDescending(x => x.CreationDate)
                 .ToList();
 
             return movements;
         }
 
-        public IEnumerable<Movement> GetAllWithPagination(int pageSize, int pageNumber)
+        public ResultModel GetAllWithPagination(int pageSize, int pageNumber)
         {
-            IEnumerable<Movement> movements;
+            try
+            {
+                IEnumerable<Movement> movements;
 
-            movements = _uow.MovementRepository.GetAll()
-                .AsNoTracking()
-                .OrderByDescending(x => x.CreationDate)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+                movements = _uow.MovementRepository.GetAll()
+                    .AsNoTracking()
+                    .OrderByDescending(x => x.CreationDate)
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
 
-            return movements;
+                var movementsLength = _uow.context.Movements
+                    .AsNoTracking().Count();
+
+                var movementsFormatted = new { movements = movements, length = movementsLength };
+
+                return new ResultModel
+                {
+                    Data = movementsFormatted,
+                    Message = "Movimentações obtidas.",
+                    Status = EResultStatus.Success
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new ResultModel
+                {
+                    Message = ex.Message,
+                    Status = EResultStatus.Failure
+                };
+            }
+            
         }
 
         public ResultModel Remove(Guid Id)
@@ -77,7 +101,7 @@ namespace CostControl.Application.Services
 
                 return new ResultModel
                 {
-                    Message = "Movimento deletado com sucesso.",
+                    Message = "Movimentação deletada com sucesso.",
                     Status = EResultStatus.Success
                 };
             }
@@ -85,7 +109,7 @@ namespace CostControl.Application.Services
             {
                 return new ResultModel
                 {
-                    Message = "Falha ao deletar movimento.",
+                    Message = "Falha ao deletar movimentação.",
                     Status = EResultStatus.Failure
                 };
             }
@@ -97,7 +121,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Data = entity.Notifications,
-                    Message = "Falha ao adicionar movimento.",
+                    Message = "Falha ao adicionar movimentação.",
                     Status = EResultStatus.Failure
                 };
 
@@ -109,7 +133,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Data = entity,
-                    Message = "Movimento adicionado com sucesso.",
+                    Message = "Movimentação adicionada com sucesso.",
                     Status = EResultStatus.Success
                 };
             }
@@ -134,7 +158,7 @@ namespace CostControl.Application.Services
                 return new ResultModel
                 {
                     Data = entity,
-                    Message = "Movimento atualizado com sucesso.",
+                    Message = "Movimentação atualizada com sucesso.",
                     Status = EResultStatus.Success
                 };
             }

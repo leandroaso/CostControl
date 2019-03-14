@@ -9,19 +9,19 @@ export class MovementService{
 
     constructor(private service: GenericService){}
     
-    getAll(pageSize:number, pageNumber: number): Observable<Array<Movement>>{
+    getAll(pageSize:number, pageNumber: number): Observable<ResultModel>{
         return this.service.getAllWithPagination('movements', pageSize, pageNumber);
     }
 
-    saveEmployee(movement: Movement): Observable<ResultModel>{
+    saveMovement(movement: Movement): Observable<ResultModel>{
         return this.service.save(movement, 'movements');
     }
 
-    updateEmployee(movement: Movement): Observable<ResultModel>{
+    updateMovement(movement: Movement): Observable<ResultModel>{
         return this.service.update(movement, 'movements');
     }
 
-    deleteEmployee(id: number): Observable<ResultModel>{
+    deleteMovement(id: number): Observable<ResultModel>{
         return this.service.delete(id, 'movements');
     }
 }

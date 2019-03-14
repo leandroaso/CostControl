@@ -15,7 +15,7 @@ namespace CostControl.Tests.Entities
         {
             _departament = new Departament("Distribution");
             _employee = new Employee("Wellington", _departament);
-            _movement = new Movement(_employee, "movement test", 500);
+            _movement = new Movement( "movement test", 500, _employee.Id);
         }
 
         [TestMethod]

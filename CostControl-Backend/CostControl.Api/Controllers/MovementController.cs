@@ -31,11 +31,14 @@ namespace CostControl.Api.Controllers
 
         [HttpGet]
         [Route("api/movements/{pageSize:int}/{pageNumber:int}")]
-        public IEnumerable<Movement> GetAll(int pageSize, int pageNumber)
+        public IActionResult GetAll(int pageSize, int pageNumber)
         {
-            var movements = _service.GetAllWithPagination(pageSize, pageNumber);
+            var result = _service.GetAllWithPagination(pageSize, pageNumber);
 
-            return movements;
+            if (result.Status == EResultStatus.Failure)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
         [HttpPost]
