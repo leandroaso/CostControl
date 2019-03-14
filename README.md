@@ -2,7 +2,7 @@
 
 - CRUD básico simulando um pequeno sistema de controle de custos.
 
-# Instalation
+# Instalação
 
 > Aplicação backend
 - Ajustar connectionstrings no arquivo Settings.cs(Projeto CostControl.Shared).
@@ -21,6 +21,6 @@ npm run start
 
 # Uso
 
-- Login
-> Username: admin
-> Password: 123456
+> Login
+- Username: admin
+- Password: 123456
