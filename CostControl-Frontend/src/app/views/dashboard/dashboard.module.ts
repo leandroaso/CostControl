@@ -5,6 +5,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -22,7 +23,8 @@ import { MovementComponent } from './movement/movement.component';
     BsDropdownModule,
     ReactiveFormsModule,
     ButtonsModule.forRoot(),
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   declarations: [ DashboardComponent, EmployeeComponent, DepartamentComponent, MovementComponent ]
 })

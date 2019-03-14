@@ -37,35 +37,36 @@
            </div>
        </ng-template>
        <br>
-       <table class="table">
-          <thead>
-             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-             </tr>
-          </thead>
-          <tbody>
-             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-             </tr>
-             <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-             </tr>
-             <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-             </tr>
-          </tbody>
-       </table>
+       <div *ngIf="movements.length > 0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Movement value</th>
+                    <th scope="col">Employee</th>
+                    <th scope="col">Departament</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let movement of movements">
+                    <th>{{movement.description}}</th>
+                    <td>{{movement.movementValue}}</td>
+                    <td>{{movement.employee.name}}</td>
+                    <td>{{movement.employee.departament.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination 
+                [boundaryLinks]="true"
+                [totalItems]="totalItems" 
+                [(ngModel)]="currentPage" 
+                (pageChanged)="pageChanged($event)"
+                previousText="&lsaquo;" 
+                nextText="&rsaquo;" 
+                firstText="&laquo;" 
+                lastText="&raquo;"
+                [maxSize]="4">
+        </pagination>
+        </div>
     </div>
  </div>
