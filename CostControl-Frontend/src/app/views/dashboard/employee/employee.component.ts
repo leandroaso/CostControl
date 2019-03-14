@@ -35,6 +35,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   createForm(): void{
+    this.getDepartaments();
     this.formCreateEmployee = new FormGroup({
       'name': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(200)]),
       'departament': new FormControl(null,[Validators.required])
@@ -63,7 +64,6 @@ export class EmployeeComponent implements OnInit {
       this.formCreateEmployee.get('departament').markAsTouched();
     } else {
       let employee = new Employee(this.formCreateEmployee.get('name').value, this.formCreateEmployee.get('departament').value)
-      
       this.service.saveEmployee(employee).subscribe(
         (result: ResultModel) => {
           this.getEmployees();
@@ -75,7 +75,7 @@ export class EmployeeComponent implements OnInit {
 
   editEmployee(employee: Employee): void {
     this.employeeForEdit = employee;
-
+    this.getDepartaments();
     this.formEditEmployee = new FormGroup({
       'name': new FormControl(employee.name, [Validators.required, Validators.minLength(3), Validators.maxLength(200)]),
       'departament': new FormControl(employee.departamentId,[Validators.required])

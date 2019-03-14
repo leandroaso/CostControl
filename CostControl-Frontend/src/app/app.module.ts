@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -35,6 +36,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { GenericService } from './generic.service';
+import { LoginComponent } from './views/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpConfigInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   imports: [
@@ -46,6 +50,7 @@ import { GenericService } from './generic.service';
     AppFooterModule,
     AppHeaderModule,
     AppSidebarModule,
+    ReactiveFormsModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
@@ -53,13 +58,17 @@ import { GenericService } from './generic.service';
   ],
   declarations: [
     AppComponent,
-    ...APP_CONTAINERS
+    ...APP_CONTAINERS,
+    LoginComponent
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   },
-  GenericService
+  GenericService,
+  {
+    provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true
+  }
 ],
   bootstrap: [ AppComponent ]
 })

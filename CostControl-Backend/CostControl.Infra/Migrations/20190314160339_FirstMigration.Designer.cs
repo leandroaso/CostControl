@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CostControl.Infra.Migrations
 {
     [DbContext(typeof(CostControlContext))]
-    [Migration("20190312173112_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20190314160339_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,13 +87,19 @@ namespace CostControl.Infra.Migrations
 
                     b.Property<DateTime>("CreationDate");
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .HasMaxLength(100);
 
-                    b.Property<string>("Username");
+                    b.Property<string>("Username")
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new { Id = new Guid("e5bda2c6-b90b-48b7-a3c8-8199add7c232"), CreationDate = new DateTime(2019, 3, 14, 13, 3, 39, 543, DateTimeKind.Local), Password = "123456", Username = "admin" }
+                    );
                 });
 
             modelBuilder.Entity("CostControl.Domain.Entities.Employee", b =>

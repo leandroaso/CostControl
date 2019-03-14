@@ -1,12 +1,14 @@
 ﻿using CostControl.Domain.Entities;
 using CostControl.Domain.Interfaces.Services;
 using CostControl.Shared.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
 namespace CostControl.Api.Controllers
 {
+    [Authorize("Bearer")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {

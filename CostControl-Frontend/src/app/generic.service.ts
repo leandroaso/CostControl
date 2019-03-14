@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Utils } from './shared/utils';
 
@@ -36,5 +36,14 @@ export class GenericService{
 
     delete(id: number, route: string): Observable<any>{
         return this.http.delete(`${this.url}/${route}/${id}`);
+    }
+
+    getToken(username: string, password: string): Observable<any>{
+        let user = {
+            username: username,
+            password: password
+        };
+        
+        return this.http.post(`${this.url}/login`, user);
     }
 }

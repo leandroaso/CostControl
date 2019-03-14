@@ -24,6 +24,7 @@ namespace CostControl.Infra.DataContext
             builder.ApplyConfiguration(new MovementMap());
             builder.ApplyConfiguration(new EmployeeMap());
             builder.ApplyConfiguration(new DepartamentMap());
+            builder.ApplyConfiguration(new UserMap());
 
             builder.Ignore<Notification>();
         }

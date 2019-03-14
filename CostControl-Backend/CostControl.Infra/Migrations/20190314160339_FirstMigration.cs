@@ -12,6 +12,7 @@ namespace CostControl.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    CreationDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
@@ -24,8 +25,9 @@ namespace CostControl.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Username = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true)
+                    CreationDate = table.Column<DateTime>(nullable: false),
+                    Username = table.Column<string>(maxLength: 100, nullable: true),
+                    Password = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -37,6 +39,7 @@ namespace CostControl.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    CreationDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(maxLength: 200, nullable: false),
                     DepartamentId = table.Column<Guid>(nullable: false)
                 },
@@ -56,6 +59,7 @@ namespace CostControl.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    CreationDate = table.Column<DateTime>(nullable: false),
                     EmployeeId = table.Column<Guid>(nullable: false),
                     Description = table.Column<string>(maxLength: 500, nullable: false),
                     MovementValue = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
@@ -70,6 +74,11 @@ namespace CostControl.Infra.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "CreationDate", "Password", "Username" },
+                values: new object[] { new Guid("e5bda2c6-b90b-48b7-a3c8-8199add7c232"), new DateTime(2019, 3, 14, 13, 3, 39, 543, DateTimeKind.Local), "123456", "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employee_DepartamentId",

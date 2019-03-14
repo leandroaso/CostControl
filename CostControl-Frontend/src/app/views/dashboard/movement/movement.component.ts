@@ -62,6 +62,7 @@ export class MovementComponent implements OnInit {
   }
 
   createForm(): void{
+    this.getEmployees();
     this.formCreateMovement = new FormGroup({
       'description': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(500)]),
       'movementValue': new FormControl(null, [Validators.required]),
@@ -98,7 +99,7 @@ export class MovementComponent implements OnInit {
 
   editMovement(movement: Movement): void {
     this.movementForEdit = movement;
-
+    this.getEmployees();
     this.formEditMovement = new FormGroup({
       'description': new FormControl(movement.description, [Validators.required, Validators.minLength(3), Validators.maxLength(500)]),
       'movementValue': new FormControl(movement.movementValue, [Validators.required]),
