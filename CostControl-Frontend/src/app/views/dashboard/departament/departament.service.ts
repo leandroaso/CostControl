@@ -17,7 +17,12 @@ export class DepartamentService{
         return this.service.save(departament, 'departaments');
     }
 
+    updateDepartament(departament: Departament): Observable<ResultModel>{
+        return this.service.update(departament, 'departaments');
+    }
+
     deleteDepartament(id: number): Observable<ResultModel>{
         return this.service.delete(id, 'departaments');
     }
+    
 }

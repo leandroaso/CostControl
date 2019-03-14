@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class EmployeeComponent implements OnInit {
-  private isEmployeesCollapsed: boolean = false;
-  private employeesCollapse: string = 'fa fa-minus';
+  isEmployeesCollapsed: boolean = false;
+  employeesCollapse: string = 'fa fa-minus';
 
   constructor() { }
 

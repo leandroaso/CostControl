@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovementComponent implements OnInit {
   
-  private isMovementsCollapsed: boolean = false;
-  private movementsCollapse: string = 'fa fa-minus';
+  isMovementsCollapsed: boolean = false;
+  movementsCollapse: string = 'fa fa-minus';
 
   constructor() { }
 

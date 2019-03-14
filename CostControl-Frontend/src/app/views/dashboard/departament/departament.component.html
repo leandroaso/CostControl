@@ -13,7 +13,7 @@
                placement="right">New Departament</button>
        </div>
        <ng-template #popDepartament>
-           <form [formGroup]="formDepartament">
+           <form [formGroup]="formCreateDepartament">
                 <div class="input-group">
                     <input formControlName="name" class="form-control" size="30" type="text" placeholder="Departament Name">
                     <span class="input-group-append">
@@ -34,9 +34,24 @@
                 (click)="deleteDepartament(departament.id)">
                 <i class="cui-trash"></i>
             </button>
-            <button class="btn btn-brand btn-sm btn-twitter mr-1" style="float: right;" type="button">
+            <button 
+                class="btn btn-brand btn-sm btn-twitter mr-1" 
+                style="float: right;" 
+                type="button"
+                [popover]="popEditDepartament" 
+                placement="top"
+                (click)="editDepartament(departament)">
                 <i class="cui-pencil"></i>
-            </button> 
+            </button>
+            <ng-template #popEditDepartament>
+                <form [formGroup]="formEditDepartament">
+                    <div>
+                        <input formControlName="name" class="form-control" style="min-width: 200px;" type="text" placeholder="Departament Name">
+                    </div>
+                    <br>
+                    <button class="btn btn-square btn-success btn-sm" type="button" (click)="updateDepartament()"><i class="fa fa-check"></i> Update</button>
+                </form>
+               </ng-template> 
           </li>
        </ul>
     </div>

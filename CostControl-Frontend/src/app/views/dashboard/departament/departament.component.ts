@@ -12,10 +12,12 @@ import { ResultModel } from '../../../shared/models/result.model';
 })
 export class DepartamentComponent implements OnInit {
 
-  private isDepartamentsCollapsed: boolean = false;
-  private departamentsCollapse: string = 'fa fa-minus';
-  private departaments: Departament[] = [];
-  private formDepartament: FormGroup;
+  isDepartamentsCollapsed: boolean = false;
+  departamentsCollapse: string = 'fa fa-minus';
+  departaments: Departament[] = [];
+  formCreateDepartament: FormGroup;
+  formEditDepartament: FormGroup;
+  departamentForEdit: Departament;
 
   constructor(private service: DepartamentService) { }
 
@@ -38,22 +40,22 @@ export class DepartamentComponent implements OnInit {
   }
 
   createForm(): void {
-    this.formDepartament = new FormGroup({
+    this.formCreateDepartament = new FormGroup({
       'name': new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(100)])
     });
   }
 
   submitForm(): void {
-    if(this.formDepartament.status === 'INVALID')
+    if(this.formCreateDepartament.status === 'INVALID')
     {
-      this.formDepartament.get('name').markAsTouched();
+      this.formCreateDepartament.get('name').markAsTouched();
     } else {
-      let departament = new Departament(this.formDepartament.get('name').value);
+      let departament = new Departament(this.formCreateDepartament.get('name').value);
       
       this.service.saveDepartament(departament).subscribe(
         (result: ResultModel) => {
           this.getDepartaments();
-          this.createForm();
+          this.formCreateDepartament.reset();
         }
       )
     }
@@ -63,6 +65,24 @@ export class DepartamentComponent implements OnInit {
     this.service.deleteDepartament(id).subscribe(
       (result: ResultModel) => {
         this.getDepartaments();
+      }
+    )
+  }
+
+  editDepartament(departament: Departament): void{
+    this.departamentForEdit = departament;
+    this.formEditDepartament = new FormGroup({
+      'name': new FormControl(departament.name, [Validators.required, Validators.minLength(2), Validators.maxLength(100)])
+    })
+  }
+
+  updateDepartament(): void{
+    this.departamentForEdit.name = this.formEditDepartament.get('name').value;
+
+    this.service.updateDepartament(this.departamentForEdit).subscribe(
+      (result: ResultModel) => {
+        this.formEditDepartament.controls['name'].setValue(null);
+        this.formEditDepartament.reset();
       }
     )
   }
