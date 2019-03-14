@@ -16,7 +16,6 @@ export class DepartamentService{
         return this.service.getAll('departaments');
     }
 
-
     saveDepartament(departament: Departament): Observable<ResultModel>{
         return this.service.save(departament, 'departaments');
     }
