@@ -11,33 +11,63 @@
                 class="btn btn-sm btn-ghost-success" 
                 type="button"
                 [popover]="popEmployee" 
-                placement="right">New Employee</button>
+                placement="right" (click)="createForm()">New Employee</button>
         </div>
         <ng-template #popEmployee>
-            <div class="form-group">
-                <div class="input-group">
-                    <input class="form-control" size="30" type="text" placeholder="Employee Name">
+            <form [formGroup]="formCreateEmployee">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input formControlName="name" class="form-control" size="30" type="text" placeholder="Employee Name">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <select formControlName="departament" class="form-control form-control-md">
+                            <option [value]="departament.id" *ngFor="let departament of departaments">{{departament.name}}</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button class="btn btn-sm btn-square btn-success" type="button" (click)="submitForm()">Save Employee</button>
                 </div>
-                <br>
-                <div class="input-group">
-                    <select class="form-control form-control-md">
-                        <option value="0">Select a departament</option>
-                        <option value="1">Option #1</option>
-                        <option value="2">Option #2</option>
-                        <option value="3">Option #3</option>
-                    </select>
-                </div>
-                <br>
-                <button class="btn btn-sm btn-square btn-success" type="button">Save Employee</button>
-            </div>
+            </form>
+            
         </ng-template>
         <br>
         <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item" *ngFor="let employee of employees">
+                {{employee.name}}
+
+                <button 
+                class="btn btn-brand btn-sm btn-youtube mr-1" 
+                style="float: right;" 
+                type="button"
+                (click)="deleteEmployee(employee.id)">
+                <i class="cui-trash"></i>
+            </button>
+            <button 
+                class="btn btn-brand btn-sm btn-twitter mr-1" 
+                style="float: right;" 
+                type="button"
+                [popover]="popEditEmployee" 
+                placement="top"
+                (click)="editEmployee(employee)">
+                <i class="cui-pencil"></i>
+            </button>
+            <ng-template #popEditEmployee>
+                <form [formGroup]="formEditEmployee">
+                    <div>
+                        <input formControlName="name" class="form-control" style="min-width: 200px;" type="text" placeholder="Departament Name">
+                    </div>
+                    <br>
+                    <div>
+                        <select formControlName="departament" class="form-control form-control-md">
+                            <option [value]="departament.id" *ngFor="let departament of departaments">{{departament.name}}</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button class="btn btn-square btn-success btn-sm" type="button" (click)="updateEmployee()"><i class="fa fa-check"></i> Update</button>
+                </form>
+               </ng-template> 
+            </li>
         </ul>
     </div>
 </div>

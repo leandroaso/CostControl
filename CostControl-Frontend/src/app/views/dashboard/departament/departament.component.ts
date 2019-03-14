@@ -33,9 +33,7 @@ export class DepartamentComponent implements OnInit {
 
   getDepartaments(): void {
     this.service.getAll().subscribe(
-      (departaments: Departament[]) => { 
-        this.departaments = departaments
-      }
+      (departaments: Departament[]) => this.departaments = departaments
     )
   }
 

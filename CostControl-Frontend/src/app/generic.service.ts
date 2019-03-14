@@ -18,6 +18,10 @@ export class GenericService{
         return this.http.get(`${this.url}/${route}/${id}`);
     }
 
+    getAllWithPagination(route: string, pageSize:number, pageNumber: number): Observable<any>{
+        return this.http.get(`${this.url}/${route}/${pageSize}/${pageNumber}`);
+    }
+
     getAll(route: string): Observable<any>{
         return this.http.get(`${this.url}/${route}`, { headers: this.headers});
     }
